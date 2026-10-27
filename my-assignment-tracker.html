@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Assignment Tracker</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background-color: #f0f2f5;
+      color: #1f2328;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      background-color: #7c3aed;
+      padding: 28px 20px;
+    }
+
+    .page-header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .page-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+
+    .page-header p {
+      font-size: 13px;
+      color: #ddd6fe;
+      margin-top: 4px;
+    }
+
+    /* ── Wrapper ── */
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    /* ── Cards Row ── */
+    .cards-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      padding: 20px 24px;
+      flex: 1 1 200px;
+      min-width: 180px;
+      border-left: 4px solid transparent;
+    }
+
+    .card-purple { border-left-color: #7c3aed; }
+    .card-green  { border-left-color: #16a34a; }
+    .card-red    { border-left-color: #dc2626; }
+
+    .card-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #57606a;
+      margin-bottom: 10px;
+    }
+
+    .card-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1f2328;
+      line-height: 1.2;
+    }
+
+    .card-purple .card-value { color: #7c3aed; }
+    .card-green  .card-value { color: #16a34a; }
+    .card-red    .card-value { color: #dc2626; }
+
+    .card-sub {
+      font-size: 12px;
+      color: #57606a;
+      margin-top: 6px;
+    }
+
+    /* ── Checklist Card ── */
+    .checklist-card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      padding: 24px;
+    }
+
+    .checklist-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .checklist-header h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1f2328;
+    }
+
+    .checklist-counter {
+      font-size: 12px;
+      font-weight: 600;
+      color: #7c3aed;
+      background: #ede9fe;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .checklist-list {
+      list-style: none;
+    }
+
+    .checklist-list li {
+      border-top: 1px solid #e5e7eb;
+      padding: 12px 4px;
+    }
+
+    .checklist-list li:first-child {
+      border-top: none;
+    }
+
+    .checklist-list li:hover {
+      background: #f7f8fa;
+      border-radius: 6px;
+    }
+
+    .checklist-list label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #1f2328;
+    }
+
+    .checklist-list input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #7c3aed;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checklist-list input[type="checkbox"]:checked + .student-name {
+      text-decoration: line-through;
+      color: #57606a;
+    }
+
+    .status-tag {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    .tag-submitted {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .tag-pending {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Purple Header -->
+  <header class="page-header">
+    <div class="page-header-inner">
+      <h1>My Assignment Tracker</h1>
+      <p>Monitor student submission progress at a glance</p>
+    </div>
+  </header>
+
+  <div class="wrapper">
+
+    <!-- Summary Cards -->
+    <section class="cards-row">
+
+      <div class="card card-purple">
+        <div class="card-label">Total Students</div>
+        <div class="card-value">30</div>
+        <div class="card-sub">Enrolled in this assignment</div>
+      </div>
+
+      <div class="card card-green">
+        <div class="card-label">Submitted</div>
+        <div class="card-value">22</div>
+        <div class="card-sub">Assignments received</div>
+      </div>
+
+      <div class="card card-red">
+        <div class="card-label">Not Submitted</div>
+        <div class="card-value">8</div>
+        <div class="card-sub">Still pending</div>
+      </div>
+
+    </section>
+
+    <!-- Submission Checklist -->
+    <section class="checklist-card">
+      <div class="checklist-header">
+        <h2>Submission Checklist</h2>
+        <span class="checklist-counter" id="submission-counter">6 / 10 submitted</span>
+      </div>
+
+      <ul class="checklist-list" id="checklist">
+        <li>
+          <label>
+            <input type="checkbox" checked />
+            <span class="student-name">Ahmad Faris</span>
+            <span class="status-tag tag-submitted">Submitted</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" checked />
+            <span class="student-name">Nurul Aina</span>
+            <span class="status-tag tag-submitted">Submitted</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" checked />
+            <span class="student-name">Haziq Danial</span>
+            <span class="status-tag tag-submitted">Submitted</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" checked />
+            <span class="student-name">Siti Mariam</span>
+            <span class="status-tag tag-submitted">Submitted</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" checked />
+            <span class="student-name">Izzat Hakimi</span>
+            <span class="status-tag tag-submitted">Submitted</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" checked />
+            <span class="student-name">Farah Liyana</span>
+            <span class="status-tag tag-submitted">Submitted</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" />
+            <span class="student-name">Amirul Hafiz</span>
+            <span class="status-tag tag-pending">Pending</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" />
+            <span class="student-name">Nur Hidayah</span>
+            <span class="status-tag tag-pending">Pending</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" />
+            <span class="student-name">Zulaikha Nadia</span>
+            <span class="status-tag tag-pending">Pending</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" />
+            <span class="student-name">Danish Ariff</span>
+            <span class="status-tag tag-pending">Pending</span>
+          </label>
+        </li>
+      </ul>
+    </section>
+
+  </div>
+
+  <script>
+    const checklist = document.getElementById('checklist');
+    const counter = document.getElementById('submission-counter');
+    const total = checklist.querySelectorAll('input[type="checkbox"]').length;
+
+    function updateCounter() {
+      const checked = checklist.querySelectorAll('input[type="checkbox"]:checked').length;
+      counter.textContent = checked + ' / ' + total + ' submitted';
+    }
+
+    checklist.addEventListener('change', function (e) {
+      const label = e.target.closest('label');
+      const tag = label.querySelector('.status-tag');
+      if (e.target.checked) {
+        tag.textContent = 'Submitted';
+        tag.className = 'status-tag tag-submitted';
+      } else {
+        tag.textContent = 'Pending';
+        tag.className = 'status-tag tag-pending';
+      }
+      updateCounter();
+    });
+  </script>
+
+</body>
+</html>
